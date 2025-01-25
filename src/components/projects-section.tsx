@@ -6,7 +6,7 @@ import { GitHubLogoIcon, LinkBreak2Icon } from "@radix-ui/react-icons";
 const projects = [
   {
     title: "Patreonix",
-    description: "Decentralized Patreon-like Platform",
+    description: "A decentralized subscription-based platform built on Solana.",
     image: "/patreonix.png",
     link: "https://creatorpatreonix.vercel.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/Patreonix",
@@ -15,7 +15,7 @@ const projects = [
   },
   {
     title: "Photofix",
-    description: "SaaS Image Processing Platform",
+    description: "A SaaS platform for advanced image processing and editing.",
     image: "/photofix.png",
     link: "https://www.photofix.in.net/",
     githubRepo: "https://github.com/kushwahramkumar2003/photofix",
@@ -24,34 +24,37 @@ const projects = [
   },
   {
     title: "Brainwave",
-    description: "AI-Powered Knowledge Management System",
+    description:
+      "An AI-powered knowledge management system for organizing information efficiently.",
     image: "/brainwave.png",
     link: "https://brainwave-web-app.vercel.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/brainwave-web",
-    technologies: ["React", "Node.js", "WebSockets"],
+    technologies: ["React", "Node.js", "AI/ML", "MongoDB"],
     status: "Completed",
   },
   {
     title: "AllIndiaCart",
-    description: "An e-commerce platform with real-time updates",
+    description:
+      "A robust e-commerce platform supporting cryptocurrency payments.",
     image: "/all-india-cart.png",
     link: "https://e-commerce-web-drab.vercel.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/All-India-Cart",
-    technologies: ["NextJS", "Node.js", "WebSockets", "Solana", "MongoDB"],
+    technologies: ["NextJS", "Node.js", "Solana", "MongoDB"],
     status: "Completed",
   },
   {
     title: "Pragati UI",
-    description: "React Component Library",
+    description:
+      "A React component library designed with Tailwind CSS and Framer Motion.",
     image: "/pragatiui.png",
     link: "https://pragati-ui.vercel.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/PragatiUI",
-    technologies: ["PWA", "React Native", "Firebase"],
+    technologies: ["React", "Tailwind CSS", "Framer Motion", "Radix UI"],
     status: "Completed",
   },
   {
     title: "Anonymous Chat",
-    description: "Real-time anonymous chat application",
+    description: "A real-time anonymous chat application using WebSockets.",
     image: "/anonymous-chat.png",
     link: "https://anonymous-chat-web-frontend.vercel.app/",
     githubRepo:
@@ -61,7 +64,7 @@ const projects = [
   },
   {
     title: "DevRouteRK",
-    description: "A platform to find the best resources for developers",
+    description: "A platform providing curated resources for developers.",
     image: "/devrouterk.png",
     link: "https://dev-routes-rk.netlify.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/DevRouteRK",
