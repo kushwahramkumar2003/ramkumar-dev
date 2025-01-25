@@ -31,7 +31,7 @@ export function HeroAndAbout() {
     ],
     socialLinks: {
       github: "https://github.com/kushwahramkumar2003",
-      linkedin: "https://www.linkedin.com/in/ramkumar_9301",
+      linkedin: "https://www.linkedin.com/in/ramkumar9301",
       twitter: "https://x.com/ramkumar_9301",
     },
     description:
