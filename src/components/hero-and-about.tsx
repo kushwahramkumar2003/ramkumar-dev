@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaMapMarkerAlt,
   FaEnvelope,
   FaCode,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export function HeroAndAbout() {
   const personalInfo = {
@@ -20,7 +20,7 @@ export function HeroAndAbout() {
     socialLinks: {
       github: "https://github.com/kushwahramkumar2003",
       linkedin: "https://www.linkedin.com/in/ramkumar_9301",
-      twitter: "https://twitter.com/ramkumar_9301",
+      twitter: "https://x.com/ramkumar_9301",
     },
     description:
       "Building beautiful and functional web applications with modern technologies.",
@@ -118,7 +118,7 @@ export function HeroAndAbout() {
               />
               <SocialIcon
                 href={personalInfo.socialLinks.twitter}
-                icon={FaTwitter}
+                icon={FaXTwitter}
                 label="Twitter Profile"
               />
             </div>
@@ -134,7 +134,13 @@ export function HeroAndAbout() {
             <Link href="#projects">View Projects</Link>
           </Button>
           <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="#contact">Contact Me</Link>
+            <Link
+              href="https://x.com/messages/compose?recipient_id=ramkumar_9301"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Me
+            </Link>
           </Button>
         </div>
       </div>

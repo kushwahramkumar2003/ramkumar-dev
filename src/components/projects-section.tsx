@@ -5,9 +5,17 @@ import { GitHubLogoIcon, LinkBreak2Icon } from "@radix-ui/react-icons";
 
 const projects = [
   {
+    title: "Patreonix",
+    description: "Decentralized Patreon-like Platform",
+    image: "/patreonix.png",
+    link: "https://creatorpatreonix.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/Patreonix",
+    technologies: ["Next.js", "TypeScript", "Tailwind", "Solana", "Rust"],
+    status: "In Progress",
+  },
+  {
     title: "Photofix",
-    description:
-      "A full-stack web application built with Next.js and TypeScript",
+    description: "SaaS Image Processing Platform",
     image: "/photofix.png",
     link: "https://www.photofix.in.net/",
     githubRepo: "https://github.com/kushwahramkumar2003/photofix",
@@ -15,22 +23,50 @@ const projects = [
     status: "Completed",
   },
   {
-    title: "Project 2",
-    description: "An e-commerce platform with real-time updates",
-    image: "/project2.jpg",
-    link: "#",
-    githubRepo: "https://github.com/username/project2",
+    title: "Brainwave",
+    description: "AI-Powered Knowledge Management System",
+    image: "/brainwave.png",
+    link: "https://brainwave-web-app.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/brainwave-web",
     technologies: ["React", "Node.js", "WebSockets"],
     status: "Completed",
   },
   {
-    title: "Project 3",
-    description: "A mobile-first progressive web application",
-    image: "/project3.jpg",
-    link: "#",
-    githubRepo: "https://github.com/username/project3",
+    title: "AllIndiaCart",
+    description: "An e-commerce platform with real-time updates",
+    image: "/all-india-cart.png",
+    link: "https://e-commerce-web-drab.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/All-India-Cart",
+    technologies: ["NextJS", "Node.js", "WebSockets", "Solana", "MongoDB"],
+    status: "Completed",
+  },
+  {
+    title: "Pragati UI",
+    description: "React Component Library",
+    image: "/pragatiui.png",
+    link: "https://pragati-ui.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/PragatiUI",
     technologies: ["PWA", "React Native", "Firebase"],
-    status: "Planned",
+    status: "Completed",
+  },
+  {
+    title: "Anonymous Chat",
+    description: "Real-time anonymous chat application",
+    image: "/anonymous-chat.png",
+    link: "https://anonymous-chat-web-frontend.vercel.app/",
+    githubRepo:
+      "https://github.com/kushwahramkumar2003/Anonymous-Chat-Front-end",
+    technologies: ["React", "Tailwind CSS", "WebSocket"],
+    status: "Completed",
+  },
+  {
+    title: "DevRouteRK",
+    description: "A platform to find the best resources for developers",
+    image: "/devrouterk.png",
+    link: "https://dev-routes-rk.netlify.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/DevRouteRK",
+    technologies: ["React", "Tailwind CSS", "NodeJS", "MongoDB"],
+    status: "Completed",
   },
 ];
 
@@ -57,7 +93,7 @@ export function ProjectsSection() {
   };
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3" id="projects">
       {projects.map((project) => (
         <div
           key={project.title}
