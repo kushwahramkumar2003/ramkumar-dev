@@ -11,7 +11,7 @@ export default function Home() {
     >
       <div className="container mx-auto px-2 py-4 flex justify-center items-center sm:px-4 sm:py-8 ">
         <div
-          className="w-full lg:w-3/4 space-y-12 
+          className="w-full lg:w-5/6 space-y-12 
           bg-background/70 backdrop-blur-sm 
           rounded-2xl shadow-2xl border border-primary/20 
           p-6 md:p-10 lg:p-12
