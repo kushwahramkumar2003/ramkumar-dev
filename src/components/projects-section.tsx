@@ -33,6 +33,15 @@ const projects = [
     status: "Completed",
   },
   {
+    title: "SketchFrame",
+    description: "Collaborative drawing app similar to Excalidraw.",
+    image: "/SketchFrame.png",
+    link: "#",
+    githubRepo: "https://github.com/kushwahramkumar2003/SketchFrame",
+    technologies: ["NextJS", "Node.js", "WebSocket", "Prisma"],
+    status: "Completed",
+  },
+  {
     title: "AllIndiaCart",
     description:
       "A robust e-commerce platform supporting cryptocurrency payments.",
