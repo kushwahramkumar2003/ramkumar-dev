@@ -5,6 +5,16 @@ import { GitHubLogoIcon, LinkBreak2Icon } from "@radix-ui/react-icons";
 
 const projects = [
   {
+    title: "ApologyStake",
+    description:
+      'ApologyStake where offenders lock SOL/NFTs as a "repentance stake." Victims can release funds after a probation period.',
+    image: "/ApologyStake.png",
+    link: "https://apology-stake.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/ApologyStake",
+    technologies: ["Next.js", "TypeScript", "Tailwind", "Solana", "Rust"],
+    status: "In Progress",
+  },
+  {
     title: "Patreonix",
     description: "A decentralized subscription-based platform built on Solana.",
     image: "/patreonix.png",
