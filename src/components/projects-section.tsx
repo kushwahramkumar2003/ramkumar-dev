@@ -5,6 +5,33 @@ import { GitHubLogoIcon, LinkBreak2Icon } from "@radix-ui/react-icons";
 
 const projects = [
   {
+    title: "Sol-Indexer",
+    description:
+      "A scalable, event-driven system for indexing Solana blockchain data using microservices architecture.",
+    image: "/sol-indexer.png",
+    link: "https://sol-indexer-web.vercel.app/",
+    githubRepo: "https://github.com/kushwahramkumar2003/sol-indexer",
+    technologies: [
+      "TypeScript",
+      "Rust",
+      "Kafka",
+      "PostgreSQL",
+      "Next.js",
+      "Bun",
+    ],
+    status: "Completed",
+  },
+  {
+    title: "Auto-SOL",
+    description:
+      "Automated recurring payments platform on Solana blockchain with an intuitive calendar interface.",
+    image: "/auto-sol.png",
+    link: "https://auto-sol-web.vercel.app",
+    githubRepo: "https://github.com/kushwahramkumar2003/auto-sol",
+    technologies: ["Solana", "TypeScript", "React", "Next.js", "Anchor"],
+    status: "In Progress",
+  },
+  {
     title: "ApologyStake",
     description:
       'ApologyStake where offenders lock SOL/NFTs as a "repentance stake." Victims can release funds after a probation period.',
@@ -12,7 +39,7 @@ const projects = [
     link: "https://apology-stake.vercel.app/",
     githubRepo: "https://github.com/kushwahramkumar2003/ApologyStake",
     technologies: ["Next.js", "TypeScript", "Tailwind", "Solana", "Rust"],
-    status: "In Progress",
+    status: "Completed",
   },
   {
     title: "Patreonix",
