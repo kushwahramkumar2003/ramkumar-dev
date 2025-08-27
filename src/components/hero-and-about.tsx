@@ -199,16 +199,16 @@ export function HeroAndAbout() {
                 label: "Skills",
                 value: personalInfo.skills.join(", "),
               },
-              {
-                icon: FaBriefcase,
-                label: "Work",
-                value: personalInfo.workExperience
-                  .map(
-                    (work) =>
-                      `${work.title} at ${work.company} (${work.duration})`
-                  )
-                  .join("; "),
-              },
+              // {
+              //   icon: FaBriefcase,
+              //   label: "Work",
+              //   value: personalInfo.workExperience
+              //     .map(
+              //       (work) =>
+              //         `${work.title} at ${work.company} (${work.duration})`
+              //     )
+              //     .join("; "),
+              // },
             ].map(({ icon: Icon, label, value }) => (
               <div
                 key={label}
