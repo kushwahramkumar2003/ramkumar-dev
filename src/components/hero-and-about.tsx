@@ -38,11 +38,11 @@ export function HeroAndAbout() {
       "I am a passionate developer with a strong background in full-stack development, Web3 technologies, and open-source contributions. My expertise lies in building scalable, secure, and user-centric applications.",
     workExperience: [
       // { title: "Intern", company: "TCS", duration: "Present" },
-      {
-        title: "Upcoming System Engineer",
-        company: "TCS",
-        duration: "Upcoming",
-      },
+      // {
+      //   title: "Upcoming System Engineer",
+      //   company: "TCS",
+      //   duration: "Upcoming",
+      // },
     ],
   };
 
