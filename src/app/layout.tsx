@@ -7,43 +7,48 @@ const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
+  display: "swap",
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ramkumar Kushwah - Full-Stack Developer Portfolio",
+  title: "Ramkumar Kushwah - Full-Stack Developer",
   description:
-    "Discover the portfolio of Ramkumar Kushwah, a skilled full-stack developer specializing in creating innovative web applications and scalable solutions.",
+    "Portfolio of Ramkumar Kushwah, a full-stack developer specializing in scalable web applications, Solana blockchain solutions, and open source.",
   keywords:
-    "Ramkumar Kushwah, full-stack developer, portfolio, web developer, software engineer, React, Node.js, MERN stack, blockchain developer, Tailwind CSS",
-  authors: [{ name: "Ramkumar Kushwah", url: "https://ramkumar-dev.me" }],
+    "Ramkumar Kushwah, Full-Stack Developer, Solana, Rust, React, Next.js, Portfolio",
+  authors: [{ name: "Ramkumar Kushwah", url: "https://ram0x.in" }],
   creator: "Ramkumar Kushwah",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
-    title: "Ramkumar Kushwah - Full-Stack Developer Portfolio",
-    description:
-      "Explore the work and achievements of Ramkumar Kushwah, a full-stack developer passionate about building seamless and efficient web applications.",
-    url: "https://ramkumar-dev.me",
-    siteName: "Ramkumar Kushwah Portfolio",
+    title: "Ramkumar Kushwah",
+    description: "Full-Stack Developer & Blockchain Enthusiast.",
+    url: "https://ram0x.in",
+    siteName: "Ramkumar Kushwah",
     images: [
       {
-        url: "https://ramkumar-dev.me/og-image.jpg",
+        url: "https://ram0x.in/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Ramkumar Kushwah Portfolio Banner",
+        alt: "Ramkumar Kushwah Portfolio",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ramkumar Kushwah - Full-Stack Developer Portfolio",
-    description:
-      "View the portfolio of Ramkumar Kushwah, a developer who brings ideas to life through innovative coding and design.",
-    images: ["https://ramkumar-dev.me/og-image.jpg"],
+    title: "Ramkumar Kushwah",
+    description: "Full-Stack Developer & Blockchain Enthusiast.",
+    images: ["https://ram0x.in/og-image.jpg"],
     site: "@ramkumar_9301",
   },
   robots: {
@@ -58,15 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#000000" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
         <Analytics />
