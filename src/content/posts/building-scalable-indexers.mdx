@@ -1,0 +1,53 @@
+---
+title: "Building Scalable Indexers for Solana"
+excerpt: "A deep dive into how I built Sol-Indexer using Rust, Kafka, and microservices architecture to handle millions of transactions."
+date: "2024-11-29"
+coverImage: "/sol-indexer.png"
+author:
+  name: "Ramkumar Kushwah"
+  picture: "/assets/blog/authors/ramkumar.jpeg"
+ogImage:
+  url: "/assets/blog/sol-indexer/cover.jpg"
+---
+
+Indexing blockchain data is one of the most challenging aspects of building scalable dApps. In this post, I'll share my journey of building **Sol-Indexer**, a high-performance Solana indexer.
+
+## The Problem
+
+Solana produces a massive amount of data—blocks are produced every 400ms. querying this data in real-time via RPC nodes is often slow and rate-limited. We needed a way to:
+
+1. Ingest block data in real-time.
+2. Filter for specific program interactions.
+3. Store it in a queryable format (PostgreSQL).
+
+## The Architecture
+
+I chose a microservices architecture to ensure scalability:
+
+- **Ingestion Service (Rust)**: Connects to Solana Geyser plugin or RPC to stream blocks.
+- **Message Queue (Kafka)**: Decouples ingestion from processing.
+- **Processor Service (Rust)**: Consumes events, decodes instructions, and normalizes data.
+- **Storage Service**: Writes processed data to PostgreSQL.
+
+### Why Rust?
+
+Rust was the obvious choice for the ingestion and processor services due to its performance and memory safety. The `solana-client` and `solana-sdk` crates are also first-class citizens in the ecosystem.
+
+```rust
+pub async function stream_blocks() -> Result<()> {
+    let pubsub_client = PubsubClient::new(&ws_url).await?;
+    let (subscription, receiver) = pubsub_client.slot_subscribe().await?;
+    
+    // ... handling stream
+}
+```
+
+## Challenges & Learnings
+
+One of the biggest challenges was handling **reorgs**. Solana handles forks gracefully, but our indexer needs to be aware when a block is skipped or dropped.
+
+We implemented a "confirmation watcher" service that only commits data to the permanent DB table after it reaches `finalized` status (32 blocks).
+
+## Conclusion
+
+Building Sol-Indexer taught me a lot about system design and the intricacies of the Solana runtime. The project is open source and available on [GitHub](https://github.com/kushwahramkumar2003/sol-indexer).
