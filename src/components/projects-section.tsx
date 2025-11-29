@@ -1,216 +1,224 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { GitHubLogoIcon, LinkBreak2Icon } from "@radix-ui/react-icons";
 
 const projects = [
   {
     title: "Sol-Indexer",
     description:
-      "A scalable, event-driven system for indexing Solana blockchain data using microservices architecture.",
-    image: "/sol-indexer.png",
+      "Scalable, event-driven system for indexing Solana blockchain data using microservices.",
     link: "https://sol-indexer-web.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/sol-indexer",
-    technologies: [
-      "TypeScript",
-      "Rust",
-      "Kafka",
-      "PostgreSQL",
-      "Next.js",
-      "Bun",
+    github: "https://github.com/kushwahramkumar2003/sol-indexer",
+    status: "2024",
+    tech: [
+      { name: "Rust", link: "https://www.rust-lang.org/" },
+      { name: "Kafka", link: "https://kafka.apache.org/" },
+      { name: "PostgreSQL", link: "https://www.postgresql.org/" },
     ],
-    status: "Completed",
   },
   {
     title: "Auto-SOL",
     description:
-      "Automated recurring payments platform on Solana blockchain with an intuitive calendar interface.",
-    image: "/auto-sol.png",
+      "Automated recurring payments platform on Solana with an intuitive calendar interface.",
     link: "https://auto-sol-web.vercel.app",
-    githubRepo: "https://github.com/kushwahramkumar2003/auto-sol",
-    technologies: ["Solana", "TypeScript", "React", "Next.js", "Anchor"],
+    github: "https://github.com/kushwahramkumar2003/auto-sol",
     status: "In Progress",
+    tech: [
+      { name: "Solana", link: "https://solana.com/" },
+      { name: "Anchor", link: "https://www.anchor-lang.com/" },
+      { name: "Next.js", link: "https://nextjs.org/" },
+    ],
   },
   {
     title: "ApologyStake",
     description:
-      'ApologyStake where offenders lock SOL/NFTs as a "repentance stake." Victims can release funds after a probation period.',
-    image: "/ApologyStake.png",
+      "DeFi protocol where offenders lock SOL/NFTs as a 'repentance stake' releasable by victims.",
     link: "https://apology-stake.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/ApologyStake",
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Solana", "Rust"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/ApologyStake",
+    status: "2024",
+    tech: [
+      { name: "Next.js", link: "https://nextjs.org/" },
+      { name: "Solana", link: "https://solana.com/" },
+      { name: "Rust", link: "https://www.rust-lang.org/" },
+    ],
   },
   {
     title: "Patreonix",
-    description: "A decentralized subscription-based platform built on Solana.",
-    image: "/patreonix.png",
+    description:
+      "Decentralized subscription-based platform built on Solana for content creators.",
     link: "https://creatorpatreonix.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/Patreonix",
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Solana", "Rust"],
+    github: "https://github.com/kushwahramkumar2003/Patreonix",
     status: "In Progress",
+    tech: [
+      { name: "Solana", link: "https://solana.com/" },
+      { name: "Rust", link: "https://www.rust-lang.org/" },
+    ],
   },
   {
     title: "Photofix",
-    description: "A SaaS platform for advanced image processing and editing.",
-    image: "/photofix.png",
+    description: "SaaS platform for advanced image processing and editing.",
     link: "https://www.photofix.in.net/",
-    githubRepo: "https://github.com/kushwahramkumar2003/photofix",
-    technologies: ["Next.js", "TypeScript", "Tailwind"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/photofix",
+    status: "2023",
+    tech: [
+      { name: "Next.js", link: "https://nextjs.org/" },
+      { name: "Tailwind", link: "https://tailwindcss.com/" },
+    ],
   },
   {
     title: "Brainwave",
     description:
-      "An AI-powered knowledge management system for organizing information efficiently.",
-    image: "/brainwave.png",
+      "AI-powered knowledge management system for organizing information efficiently.",
     link: "https://brainwave-web-app.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/brainwave-web",
-    technologies: ["React", "Node.js", "AI/ML", "MongoDB"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/brainwave-web",
+    status: "2023",
+    tech: [
+      { name: "React", link: "https://react.dev/" },
+      { name: "Node.js", link: "https://nodejs.org/" },
+      { name: "AI/ML", link: "#" },
+    ],
   },
   {
     title: "SketchFrame",
     description: "Collaborative drawing app similar to Excalidraw.",
-    image: "/SketchFrame.png",
     link: "#",
-    githubRepo: "https://github.com/kushwahramkumar2003/SketchFrame",
-    technologies: ["NextJS", "Node.js", "WebSocket", "Prisma"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/SketchFrame",
+    status: "2023",
+    tech: [
+      { name: "NextJS", link: "https://nextjs.org/" },
+      {
+        name: "WebSocket",
+        link: "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
+      },
+      { name: "Prisma", link: "https://www.prisma.io/" },
+    ],
   },
   {
     title: "AllIndiaCart",
     description:
-      "A robust e-commerce platform supporting cryptocurrency payments.",
-    image: "/all-india-cart.png",
+      "Robust e-commerce platform supporting cryptocurrency payments.",
     link: "https://e-commerce-web-drab.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/All-India-Cart",
-    technologies: ["NextJS", "Node.js", "Solana", "MongoDB"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/All-India-Cart",
+    status: "2023",
+    tech: [
+      { name: "NextJS", link: "https://nextjs.org/" },
+      { name: "Solana", link: "https://solana.com/" },
+      { name: "MongoDB", link: "https://www.mongodb.com/" },
+    ],
   },
   {
     title: "Pragati UI",
     description:
-      "A React component library designed with Tailwind CSS and Framer Motion.",
-    image: "/pragatiui.png",
+      "A comprehensive React component library designed with Tailwind CSS and Framer Motion.",
     link: "https://pragati-ui.vercel.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/PragatiUI",
-    technologies: ["React", "Tailwind CSS", "Framer Motion", "Radix UI"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/PragatiUI",
+    status: "2023",
+    tech: [
+      { name: "React", link: "https://react.dev/" },
+      { name: "Tailwind", link: "https://tailwindcss.com/" },
+      { name: "Framer Motion", link: "https://www.framer.com/motion/" },
+    ],
   },
   {
     title: "Anonymous Chat",
     description: "A real-time anonymous chat application using WebSockets.",
-    image: "/anonymous-chat.png",
     link: "https://anonymous-chat-web-frontend.vercel.app/",
-    githubRepo:
-      "https://github.com/kushwahramkumar2003/Anonymous-Chat-Front-end",
-    technologies: ["React", "Tailwind CSS", "WebSocket"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/Anonymous-Chat-Front-end",
+    status: "2023",
+    tech: [
+      { name: "React", link: "https://react.dev/" },
+      { name: "Tailwind", link: "https://tailwindcss.com/" },
+      {
+        name: "WebSocket",
+        link: "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API",
+      },
+    ],
   },
   {
     title: "DevRouteRK",
     description: "A platform providing curated resources for developers.",
-    image: "/devrouterk.png",
     link: "https://dev-routes-rk.netlify.app/",
-    githubRepo: "https://github.com/kushwahramkumar2003/DevRouteRK",
-    technologies: ["React", "Tailwind CSS", "NodeJS", "MongoDB"],
-    status: "Completed",
+    github: "https://github.com/kushwahramkumar2003/DevRouteRK",
+    status: "2023",
+    tech: [
+      { name: "React", link: "https://react.dev/" },
+      { name: "NodeJS", link: "https://nodejs.org/" },
+      { name: "MongoDB", link: "https://www.mongodb.com/" },
+    ],
   },
 ];
 
 export function ProjectsSection() {
-  interface ProjectStatus {
-    status: "Completed" | "In Progress" | "Planned" | string;
-  }
-
-  type StatusColorClasses = string;
-
-  const getStatusColor = (
-    status: ProjectStatus["status"]
-  ): StatusColorClasses => {
-    switch (status) {
-      case "Completed":
-        return "bg-green-500/10 text-green-600 border-green-500/30";
-      case "In Progress":
-        return "bg-yellow-500/10 text-yellow-600 border-yellow-500/30";
-      case "Planned":
-        return "bg-blue-500/10 text-blue-600 border-blue-500/30";
-      default:
-        return "bg-gray-500/10 text-gray-600 border-gray-500/30";
-    }
-  };
-
   return (
-    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3" id="projects">
-      {projects.map((project) => (
-        <div
-          key={project.title}
-          className="group relative overflow-hidden rounded-xl border border-primary/20 transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
-        >
-          {/* Project Image */}
-          <div className="relative aspect-video w-full overflow-hidden">
-            <Image
-              src={project.image || "/placeholder.svg"}
-              alt={project.title}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            {/* Technology Tags */}
-            <div className="absolute top-2 right-2 flex gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 text-primary py-1 text-xs bg-primary/10 backdrop-blur-sm rounded-full"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
+    <section id="projects" className="mb-16">
+      <h2 className="text-lg font-medium mb-8 text-foreground">
+        Selected Projects
+      </h2>
 
-          {/* Project Details */}
-          <div className="p-4 space-y-3">
-            <div className="flex justify-between items-center">
-              <h3 className="text-lg font-bold text-primary">
+      <div className="flex flex-col space-y-10">
+        {projects.map((project) => (
+          <div
+            key={project.title}
+            className="group flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-8"
+          >
+            <div className="flex flex-col gap-2 sm:max-w-[65%]">
+              <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
-              <span
-                className={`px-2 py-1 text-xs rounded-full ${getStatusColor(
-                  project.status
-                )}`}
-              >
+
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech.name}
+                    className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-[2px] bg-[#111] border border-white/5 text-muted-foreground font-medium"
+                  >
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-row sm:flex-col justify-between sm:justify-start sm:items-end gap-1 mt-2 sm:mt-0 min-w-[100px]">
+              <span className="text-xs font-mono text-muted-foreground/50 mb-1">
                 {project.status}
               </span>
-            </div>
 
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {project.description}
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex gap-2 pt-2">
-              <Link
-                href={project.githubRepo}
-                target="_blank"
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-sm border border-primary/20 rounded-lg transition-all duration-300 hover:bg-primary/5 hover:border-primary/40"
-              >
-                <GitHubLogoIcon className="w-4 h-4" />
-                GitHub
-              </Link>
-              <Link
-                href={project.link}
-                target="_blank"
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-lg transition-all duration-300 hover:bg-primary/90"
-              >
-                <LinkBreak2Icon className="w-4 h-4" />
-                View Project
-              </Link>
+              <div className="flex gap-4 sm:gap-3 text-xs font-medium">
+                {project.link && project.link !== "#" && (
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    View
+                  </Link>
+                )}
+                <Link
+                  href={project.github}
+                  target="_blank"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Code
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      <div className="mt-12">
+        <Link
+          href="https://github.com/kushwahramkumar2003?tab=repositories"
+          target="_blank"
+          className="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+        >
+          View full project archive <span className="text-[10px]">→</span>
+        </Link>
+      </div>
+    </section>
   );
 }
 

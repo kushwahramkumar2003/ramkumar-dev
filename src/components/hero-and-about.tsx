@@ -1,240 +1,111 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaMapMarkerAlt,
-  FaEnvelope,
-  FaCode,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export function HeroAndAbout() {
   const personalInfo = {
     name: "Ramkumar Kushwah",
-    role: "Full Stack Developer | Blockchain Enthusiast | Open Source Contributor",
+    role: "Full Stack Developer",
     location: "Ashoknagar, M.P.",
     email: "kushwahramkumar2003@gmail.com",
-    skills: [
-      "React",
-      "Next.js",
-      "Node.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Solidity",
-      "Ethereum",
-      "Web3",
-      "Rust",
-      "PostgreSQL",
-    ],
     socialLinks: {
       github: "https://github.com/kushwahramkumar2003",
       linkedin: "https://www.linkedin.com/in/ramkumar9301",
       twitter: "https://x.com/ramkumar_9301",
     },
     description:
-      "I am a passionate developer with a strong background in full-stack development, Web3 technologies, and open-source contributions. My expertise lies in building scalable, secure, and user-centric applications.",
-    workExperience: [
-      // { title: "Intern", company: "TCS", duration: "Present" },
-      // {
-      //   title: "Upcoming System Engineer",
-      //   company: "TCS",
-      //   duration: "Upcoming",
-      // },
-    ],
+      "I build scalable, secure, and user-centric applications. Passionate about full-stack development, Web3 technologies, and open-source.",
+    currentJob: {
+      role: "Full-stack Developer",
+      company: "Pixel Technologies",
+      location: "Indore",
+      duration: "3 months",
+      type: "Full-time",
+    },
   };
 
-  const SocialIcon = ({
-    href,
-    icon: Icon,
-    label,
-  }: {
-    href: string;
-    icon: React.ComponentType;
-    label: string;
-  }) => (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="text-2xl text-muted-foreground hover:text-primary transition-colors 
-      focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-full"
-    >
-      <Icon />
-    </Link>
-  );
-
   return (
-    <section
-      className="
-        container 
-        mx-auto 
-        px-4 
-        flex 
-        flex-col 
-        md:flex-row 
-        gap-8 
-        items-center 
-        justify-between
-      "
-    >
-      <div
-        className="
-          w-full 
-          md:w-[48%] 
-          bg-card/80 
-          p-6 
-          sm:p-8 
-          rounded-xl 
-          backdrop-blur-sm 
-          space-y-6 
-          shadow-lg 
-          hover:shadow-xl 
-          transition-all 
-          duration-300
-        "
-      >
-        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
-          <Image
-            src="https://avatars.githubusercontent.com/u/68776478?v=4"
-            alt="Ramkumar Kushwah Profile"
-            className="
-              rounded-full 
-              border-4 
-              border-primary/20 
-              w-24 
-              h-24 
-              sm:w-28 
-              sm:h-28 
-              md:w-32 
-              md:h-32 
-              object-cover
-            "
-            width={120}
-            height={120}
-            priority
-          />
-          <div className="text-center sm:text-left w-full">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+    <section className="mb-16 pt-8 sm:pt-12">
+      <div className="flex flex-col-reverse sm:flex-row gap-8 sm:gap-12 items-start justify-between">
+        <div className="flex-1 space-y-6">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-3">
               {personalInfo.name}
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground">
-              {personalInfo.role}
-            </p>
 
-            <div className="flex justify-center sm:justify-start space-x-4 mt-3">
-              <SocialIcon
-                href={personalInfo.socialLinks.github}
-                icon={FaGithub}
-                label="GitHub Profile"
-              />
-              <SocialIcon
-                href={personalInfo.socialLinks.linkedin}
-                icon={FaLinkedin}
-                label="LinkedIn Profile"
-              />
-              <SocialIcon
-                href={personalInfo.socialLinks.twitter}
-                icon={FaXTwitter}
-                label="Twitter Profile"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row justify-center sm:justify-start space-y-3 sm:space-y-0 sm:space-x-8 ">
-          <Button asChild variant="default" className="w-full sm:w-auto">
-            <Link href="#projects">View Projects</Link>
-          </Button>
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link
-              href="https://x.com/messages/compose?recipient_id=ramkumar_9301"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contact Me
-            </Link>
-          </Button>
-        </div>
-      </div>
-
-      <div
-        className="
-          w-full 
-          md:w-[48%] 
-          bg-card/80 
-          backdrop-blur-sm 
-          border-none 
-          shadow-lg 
-          hover:shadow-xl 
-          transition-all 
-          duration-300
-        "
-      >
-        <div className="space-y-4">
-          <div className="text-center sm:text-left">
-            <h2 className="text-lg sm:text-xl font-semibold">About Me</h2>
-            <p className="text-base text-muted-foreground">
+            <p className="text-base leading-relaxed text-muted-foreground/90 max-w-xl">
               {personalInfo.description}
             </p>
           </div>
 
-          <div className="grid gap-3">
-            {[
-              {
-                icon: FaMapMarkerAlt,
-                label: "Location",
-                value: personalInfo.location,
-              },
-              {
-                icon: FaEnvelope,
-                label: "Email",
-                value: personalInfo.email,
-              },
-              {
-                icon: FaCode,
-                label: "Skills",
-                value: personalInfo.skills.join(", "),
-              },
-              // {
-              //   icon: FaBriefcase,
-              //   label: "Work",
-              //   value: personalInfo.workExperience
-              //     .map(
-              //       (work) =>
-              //         `${work.title} at ${work.company} (${work.duration})`
-              //     )
-              //     .join("; "),
-              // },
-            ].map(({ icon: Icon, label, value }) => (
-              <div
-                key={label}
-                className="
-                  flex 
-                  flex-row 
-                  items-center 
-                  sm:items-start 
-                  space-x-2
-                 
-                "
-              >
-                <div className="flex flex-row sm:flex-row items-start gap-1">
-                  <div className="flex flow-row justify-center items-center gap-1">
-                    <Icon className="text-muted-foreground mb-1 sm:mb-0" />
-                    <span className="font-medium mr-0 sm:mr-2 text-center sm:text-left">
-                      {label}:
-                    </span>
-                  </div>
-
-                  <span className="text-muted-foreground text-start sm:text-left">
-                    {value}
-                  </span>
-                </div>
-              </div>
-            ))}
+          <div className="flex items-center gap-2.5 text-sm text-muted-foreground/80">
+            <span className="relative flex h-2 w-2">
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500/80"></span>
+            </span>
+            <span>
+              {personalInfo.currentJob.role} at{" "}
+              <span className="text-foreground font-medium">
+                {personalInfo.currentJob.company}
+              </span>
+            </span>
           </div>
+
+          <div className="flex items-center gap-6 pt-1">
+            <div className="flex gap-5">
+              <Link
+                href={personalInfo.socialLinks.github}
+                target="_blank"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub"
+              >
+                <FaGithub size={19} />
+              </Link>
+              <Link
+                href={personalInfo.socialLinks.linkedin}
+                target="_blank"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={19} />
+              </Link>
+              <Link
+                href={personalInfo.socialLinks.twitter}
+                target="_blank"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Twitter"
+              >
+                <FaXTwitter size={19} />
+              </Link>
+              <Link
+                href={`mailto:${personalInfo.email}`}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Email"
+              >
+                <FaEnvelope size={19} />
+              </Link>
+            </div>
+
+            <span className="h-4 w-[1px] bg-white/10"></span>
+
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Read my blog →
+            </Link>
+          </div>
+        </div>
+
+        <div className="relative w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0">
+          <Image
+            src="https://avatars.githubusercontent.com/u/68776478?v=4"
+            alt={personalInfo.name}
+            fill
+            className="rounded-full object-cover border border-white/10 shadow-sm transition-all duration-500"
+            priority
+            sizes="(max-width: 640px) 80px, 112px"
+          />
         </div>
       </div>
     </section>
