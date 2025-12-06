@@ -10,17 +10,38 @@ interface CodeBlockProps {
   className?: string;
 }
 
+interface ReactElementWithProps {
+  props?: {
+    children?: string | React.ReactNode;
+  };
+}
+
+function extractCodeString(children: string | React.ReactNode): string {
+  if (typeof children === "string") {
+    return children;
+  }
+
+  if (
+    typeof children === "object" &&
+    children !== null &&
+    "props" in children
+  ) {
+    const element = children as ReactElementWithProps;
+    const propsChildren = element.props?.children;
+    if (typeof propsChildren === "string") {
+      return propsChildren;
+    }
+  }
+
+  return String(children);
+}
+
 export function CodeBlock({ children, className = "" }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const match = /language-(\w+)/.exec(className || "");
   const language = match ? match[1] : "";
 
-  const codeString =
-    typeof children === "string"
-      ? children
-      : typeof children === "object" && children !== null && "props" in children
-        ? (children as any).props?.children || String(children)
-        : String(children);
+  const codeString = extractCodeString(children);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(codeString.trim());
