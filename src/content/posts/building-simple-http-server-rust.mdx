@@ -1,0 +1,239 @@
+---
+title: "Building a Simple HTTP Server in Rust with Thread Pooling"
+description: "Learn how to create a basic HTTP server in Rust from scratch, handle incoming connections, and implement a thread pool for concurrent request handling."
+date: "2025-12-06"
+tags: ["rust", "http", "concurrency", "thread-pool", "networking"]
+coverImage: "/http-server-rust.svg"
+---
+Ever wondered how web servers handle thousands of requests without breaking a sweat? The secret lies in concurrency. Today, we are going to build a simple HTTP server in Rust that can handle multiple connections using a custom thread pool.
+
+This is not production-ready code. Think of it as a learning exercise to understand how things work under the hood.
+
+## What We Are Building
+
+We will create:
+
+1. A TCP listener that waits for incoming connections
+
+2. A thread pool that manages worker threads
+
+3. A request handler that sends back a response
+
+Let us break it down piece by piece.
+
+## Setting Up the TCP Listener
+
+The foundation of any HTTP server is a TCP listener. In Rust, the standard library gives us `TcpListener` which does exactly what the name suggests.
+
+```rust
+use std::net::TcpListener;
+
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
+
+    for stream in listener.incoming() {
+        match stream {
+            Ok(stream) => {
+                // handle the connection
+            }
+            Err(e) => println!("Error: {:?}", e),
+        }
+    }
+}
+```
+
+The `bind` function attaches our server to port 8080 on localhost. The `incoming()` method returns an iterator that yields connection attempts. Each `stream` represents a client trying to connect.
+
+The problem here? This code handles one request at a time. If someone sends a slow request, everyone else waits. Not great.
+
+## The Thread Pool Concept
+
+A thread pool is basically a group of threads sitting around, waiting for work. When a task comes in, one of the idle threads picks it up and executes it. This is way better than spawning a new thread for every request because:
+
+- Creating threads is expensive
+
+- Too many threads can overwhelm your system
+
+- Thread pools give you control over resource usage
+
+Here is how our thread pool will work:
+
+1. We create N worker threads at startup
+
+2. Each worker waits for jobs on a shared channel
+
+3. When a request comes in, we send it through the channel
+
+4. An available worker picks it up and handles it
+
+## Building the Worker
+
+A worker is just a thread with an ID that continuously listens for jobs.
+
+```rust
+use std::sync::{mpsc, Arc, Mutex};
+use std::thread;
+
+struct Worker {
+    id: usize,
+    thread: thread::JoinHandle<()>,
+}
+
+impl Worker {
+    pub fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
+        let thread = thread::spawn(move || {
+            loop {
+                let job = receiver.lock().unwrap().recv().unwrap();
+                println!("Worker {} got a job; executing.", id);
+                job.call_box();
+            }
+        });
+
+        Worker { id, thread }
+    }
+}
+```
+
+Notice the `Arc<Mutex<mpsc::Receiver<Job>>>` type. That looks scary, but let me break it down:
+
+- `mpsc::Receiver` is the receiving end of a channel
+
+- `Mutex` ensures only one worker accesses the receiver at a time
+
+- `Arc` allows multiple workers to share ownership of the receiver
+
+Without this combination, Rust would not compile. The borrow checker is strict, and rightfully so.
+
+## The FnBox Trait
+
+Here is a quirk you will run into. We want to store closures in a Box and call them later. But `FnOnce` closures move themselves when called, which does not play nice with `Box`.
+
+```rust
+trait FnBox {
+    fn call_box(self: Box<Self>);
+}
+
+impl<F: FnOnce()> FnBox for F {
+    fn call_box(self: Box<F>) {
+        (*self)()
+    }
+}
+
+type Job = Box<dyn FnBox + Send + 'static>;
+```
+
+This trait gives us a way to call a boxed closure. The `Send` bound ensures the closure can be sent between threads, and `'static` means it does not hold any non-static references.
+
+Note: In modern Rust versions, you can use `Box<dyn FnOnce() + Send>` directly without this workaround, thanks to improvements in how the compiler handles boxed closures.
+
+## The Thread Pool Struct
+
+Now we tie everything together.
+
+```rust
+pub struct ThreadPool {
+    workers: Vec<Worker>,
+    sender: mpsc::Sender<Job>,
+}
+
+impl ThreadPool {
+    pub fn new(size: usize) -> ThreadPool {
+        assert!(size > 0);
+
+        let (sender, receiver) = mpsc::channel();
+        let receiver = Arc::new(Mutex::new(receiver));
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id, Arc::clone(&receiver)));
+        }
+
+        ThreadPool { workers, sender }
+    }
+
+    pub fn execute<F>(&self, f: F)
+    where
+        F: FnOnce() + Send + 'static,
+    {
+        let job = Box::new(f);
+        self.sender.send(job).unwrap();
+    }
+}
+```
+
+The `new` function creates a channel and spawns the workers. The `execute` method takes any closure, boxes it up, and sends it down the channel.
+
+## Handling HTTP Connections
+
+The final piece is actually responding to HTTP requests.
+
+```rust
+use std::io::{Read, Write};
+use std::thread::sleep;
+use std::time::Duration;
+
+fn handle_connection(mut stream: std::net::TcpStream) {
+    let mut buffer = [0; 1024];
+    stream.read(&mut buffer).unwrap();
+
+    let msg = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\nHello, World!";
+    stream.write_all(msg.as_bytes()).unwrap();
+    sleep(Duration::from_secs(100));
+    stream.flush().unwrap();
+}
+```
+
+This is a minimal HTTP response. We read the incoming request into a buffer, then send back a properly formatted HTTP response with headers and body.
+
+The `sleep` call is there to simulate a slow operation. In real code, you would remove this.
+
+## Putting It All Together
+
+```rust
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
+    let pool = ThreadPool::new(4);
+
+    for stream in listener.incoming() {
+        match stream {
+            Ok(stream) => {
+                pool.execute(|| {
+                    handle_connection(stream);
+                });
+            }
+            Err(e) => println!("Error: {:?}", e),
+        }
+    }
+}
+```
+
+Run this, open your browser to `http://127.0.0.1:8080`, and you should see "Hello, World!". Open multiple tabs and watch the console. You will see different workers handling different requests.
+
+## What Could Be Improved
+
+This implementation is educational, not production-ready. Here is what you would need to fix:
+
+- **Graceful shutdown**: Workers run forever. There is no way to stop them cleanly.
+
+- **Error handling**: All those `unwrap()` calls will panic on errors.
+
+- **Connection timeout**: Slow clients could tie up workers indefinitely.
+
+- **HTTP parsing**: We are ignoring the actual request content.
+
+## Resources
+
+If you want to dig deeper, here are some solid resources:
+
+- [The Rust Book - Building a Multithreaded Web Server](https://doc.rust-lang.org/book/ch21-00-final-project-a-web-server.html) - The official guide that inspired this approach
+
+- [rust-threadpool crate](https://github.com/rust-threadpool/rust-threadpool) - A mature, well-tested thread pool implementation
+
+- [Tokio](https://tokio.rs/) - When you are ready for async, this is the go-to runtime
+
+- [Rayon](https://github.com/rayon-rs/rayon) - Data parallelism made easy
+
+## Excalidraw Diagram Prompt
+
+If you want to create a visual diagram for this architecture, here is a prompt you can use: "Create a diagram showing a TCP listener receiving multiple HTTP requests, routing them through a channel to a thread pool with 4 worker threads, each handling connections concurrently."
