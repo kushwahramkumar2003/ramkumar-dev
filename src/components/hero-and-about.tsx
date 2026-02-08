@@ -17,11 +17,12 @@ export function HeroAndAbout() {
     description:
       "I build scalable, secure, and user-centric applications. Passionate about full-stack development, Web3 technologies, and open-source.",
     currentJob: {
-      role: "Full-stack Developer",
-      company: "Pixel Technologies",
-      location: "Indore",
-      duration: "3 months",
-      type: "Full-time",
+      role: "System Software Engineer",
+      company: "TCS",
+    },
+    previousJob: {
+      role: "Full-Stack Developer",
+      company: "Pixel Tech",
     },
   };
 
@@ -47,6 +48,10 @@ export function HeroAndAbout() {
               {personalInfo.currentJob.role} at{" "}
               <span className="text-foreground font-medium">
                 {personalInfo.currentJob.company}
+              </span>{" "}
+              • Ex {personalInfo.previousJob.role} at{" "}
+              <span className="text-foreground font-medium">
+                {personalInfo.previousJob.company}
               </span>
             </span>
           </div>
