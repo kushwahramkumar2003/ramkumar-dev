@@ -3,8 +3,8 @@ import Link from "next/link";
 import { DiscordStatus } from "./discord-status";
 
 const buildingItem = {
-  name: "PayrollX-Solana",
-  link: "https://github.com/kushwahramkumar2003/PayrollX-Solana",
+  name: "Castify",
+  link: "https://github.com/kushwahramkumar2003/castify",
 };
 
 const learningItem = {

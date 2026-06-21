@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -15,6 +15,12 @@ const geistMono = localFont({
   weight: "100 900",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
   title: "Ramkumar Kushwah - Full-Stack Developer",
@@ -64,10 +70,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#000000" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
       >

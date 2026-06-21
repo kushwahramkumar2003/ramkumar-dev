@@ -72,7 +72,7 @@ export function DiscordStatus() {
   const [spotifyTime, setSpotifyTime] = useState<string>("0:00");
   const [spotifyDuration, setSpotifyDuration] = useState<string>("0:00");
   const socketRef = useRef<WebSocket | null>(null);
-  const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const heartbeatIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const connectToLanyard = () => {
